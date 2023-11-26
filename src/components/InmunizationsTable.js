@@ -10,7 +10,6 @@ import { Button } from "primereact/button";
 
 export default function InmunizationsTable() {
   const { token } = useContext(UserContext);
-
   const dt = useRef(null);
   const [loading, setLoading] = useState(true);
   const [inmunizationsList, setInmunizationsList] = useState([]);
