@@ -110,9 +110,9 @@ export default function ScheduleAppointment() {
             getUrl(role);
             getIdVAT();
             setFormData(data);
-            var dd = appointdate.getDate();
-            var mm = appointdate.getMonth() + 1;
-            var yyyy = appointdate.getFullYear();
+            let dd = appointdate.getDate();
+            let mm = appointdate.getMonth() + 1;
+            let yyyy = appointdate.getFullYear();
 
             if (dd < 10) {
                 dd = "0" + dd;
@@ -141,6 +141,8 @@ export default function ScheduleAppointment() {
             axios.post(process.env.REACT_APP_API_URL + getUrl(role) + "schedule-appointment", data, { headers: { Authorization: `Bearer ${token}` } })
                 .then(res => {
                     if (res.status === 201) {
+                        setError(false);
+                        setErrorMessage("");
                         setShowMessage(true);
                         reset();
                     }
@@ -151,6 +153,7 @@ export default function ScheduleAppointment() {
                     setShowMessage(true);
                 });
         } catch (error) {
+            reset();
             throw console.error(error);
         }
     };
