@@ -23,9 +23,14 @@ export function PrevAppointmentsTable() {
             setPrevAppointmentsList(res.data);
             setLoading(false);
           }
-        }).catch(err => console.error(err));
-    } catch (error) {
-      throw console.error(error);
+          setLoading(false);
+        }).catch(err => {
+          console.error(err)
+          setLoading(false);
+        });
+      } catch (error) {
+        setLoading(false);
+        throw console.error(error);
     }
   }, [])
   
@@ -41,8 +46,8 @@ export function PrevAppointmentsTable() {
         <DataTable showGridlines ref={dt} value={prevAppointmentsList}
           dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
-          loading={loading} header={header} responsiveLayout="scroll">
+          currentPageReportTemplate="Showing {first} to {last} de {totalRecords} citas previas"
+          loading={loading} header={header} responsiveLayout="scroll" emptyMessage="Sin citas previas.">
           <Column field="timestamp" header="Fecha de la cita" style={{ minWidth: '12rem' }}></Column>
           <Column field="appointment_details" header="Descripción" style={{ minWidth: '12rem' }}></Column>
         </DataTable>
