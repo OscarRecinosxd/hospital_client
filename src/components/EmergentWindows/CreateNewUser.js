@@ -150,7 +150,6 @@ export default function CreateNewUser() {
         onClick={() => {
           setShowMessage(false);
           menuContext.settingEmergentNewUserState();
-
         }}
       />
     </div>
@@ -254,7 +253,13 @@ export default function CreateNewUser() {
                     <Controller
                       name="name"
                       control={control}
-                      rules={{ required: "El nombre es requerido" }}
+                      rules={{
+                        required: "El nombre es requerido",
+                        pattern: {
+                          value: /^[A-Za-z ]+$/i,
+                          message: "El nombre no debe contener números",
+                        },
+                      }}
                       render={({ field, fieldState }) => (
                         <InputText
                           id={field.name}
@@ -307,7 +312,13 @@ export default function CreateNewUser() {
                     <Controller
                       name="last_name"
                       control={control}
-                      rules={{ required: "El apellido es requerido" }}
+                      rules={{
+                        required: "El apellido es requerido",
+                        pattern: {
+                          value: /^[A-Za-z ]+$/i,
+                          message: "El apellido no debe contener números",
+                        },
+                      }}
                       render={({ field, fieldState }) => (
                         <InputText
                           id={field.name}
